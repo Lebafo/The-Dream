@@ -1,0 +1,594 @@
+using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+public class TextController : MonoBehaviour
+{
+
+    public Text text;
+
+    bool eg1 = false;
+    bool eg2 = false;
+    bool eg3 = false;
+    bool eg4 = false;
+
+
+
+    private enum States
+    {
+        start, dream, bed_0, bed_1, bed_2, room_0, room_1, room_2, shower_0, shower_1, window_0,
+        window_1, door_0, door_1, door_2, cabi_0, cabi_1, paper,
+        key, closet_0, closet_1, closet_2, ward_0, ward_1, stairs_0, stairs_1, roof_0, roof_1,
+        shed_0, shed_1, shed_2, jump, wake, dec1, dec2, dec3, dec4, eng1, eng2, eng3, eng4
+
+    };
+
+    
+
+    private States myState;
+
+    // Use this for initialization
+
+    void Start()
+    {
+   
+
+       
+
+        myState = States.start;
+        
+    }
+
+    // Update is called once per frame
+
+    #region States
+
+    void Update()
+    {
+        print(myState);
+        if (myState == States.start)            { start(); }
+        else if (myState == States.dream)       { dream(); }
+        else if (myState == States.bed_0)       { bed_0(); }
+        else if (myState == States.bed_1)       { bed_1(); }
+        else if (myState == States.bed_2)       { bed_2(); }
+        else if (myState == States.room_0)      { room_0(); }
+        else if (myState == States.room_1)      { room_1(); }
+        else if (myState == States.room_2)      { room_2(); }
+        else if (myState == States.shower_0)    { shower_0(); }
+        else if (myState == States.shower_1)    { shower_1(); }
+        else if (myState == States.window_0)    { window_0(); }
+        else if (myState == States.window_1)    { window_1(); }
+        else if (myState == States.door_0)      { door_0(); }
+        else if (myState == States.door_1)      { door_1(); }
+        else if (myState == States.door_2)      { door_2(); }
+        else if (myState == States.cabi_0)      { cabi_0(); }
+        else if (myState == States.cabi_1)      { cabi_1(); }
+        else if (myState == States.key)         { key(); }
+        else if (myState == States.closet_0)    { closet_0(); }
+        else if (myState == States.closet_1)    { closet_1(); }
+        else if (myState == States.closet_2)    { closet_2(); }
+        else if (myState == States.ward_0)      { ward_0(); }
+        else if (myState == States.ward_1)      { ward_1(); }
+        else if (myState == States.stairs_0)    { stairs_0(); }
+        else if (myState == States.stairs_1)    { stairs_1(); }
+        else if (myState == States.roof_0)      { roof_0(); }
+        else if (myState == States.roof_1)      { roof_1(); }
+        else if (myState == States.shed_0)      { shed_0(); }
+        else if (myState == States.shed_1)      { shed_1(); }
+        else if (myState == States.shed_2)      { shed_2(); }
+        else if (myState == States.jump)        { jump(); }
+        else if (myState == States.paper)       { paper(); }
+        else if (myState == States.wake)        { wake(); }
+        else if (myState == States.dec1)        { dec1(); }
+        else if (myState == States.dec2)        { dec2(); }
+        else if (myState == States.dec3)        { dec3(); }
+        else if (myState == States.dec4)        { dec4(); }
+        else if (myState == States.eng1)        { eng1(); }
+        else if (myState == States.eng2)        { eng2(); }
+        else if (myState == States.eng3)        { eng3(); }
+        else if (myState == States.eng4)        { eng4(); }
+
+
+        #endregion
+
+    }
+
+    #region state handler methods
+
+
+
+    void dec1 ()
+    {
+        eg1 = true;
+        myState = States.eng1;
+    
+    }
+
+    void dec2 ()
+    {
+        eg2 = true;
+        myState = States.eng1;
+    }
+
+    void dec3 ()
+    {
+        eg3 = true;
+        myState = States.eng1;
+    }
+
+    void dec4 ()
+    {
+        eg4 = true;
+        myState = States.eng1;
+    }
+
+
+
+    void eng1 ()
+    {
+        if (eg1 == true)               { myState = States.eng2; }
+        else if (eg1 == false)          { myState = States.dream; }
+    }
+
+    void eng2 ()
+    {
+        if (eg2 == true)               { myState = States.eng3; }
+        else if (eg2 == false)          { myState = States.dream; }
+    }
+
+    void eng3 ()
+    {
+        if (eg3 == true)               { myState = States.eng4; }
+        else if (eg3 == false)          { myState = States.dream; }
+    }
+
+    void eng4 ()
+    {
+        if (eg4 == true)               { myState = States.wake; }
+        else if (eg4 == false)          { myState = States.dream; }
+    }
+
+
+
+
+
+
+
+
+
+
+    void start()
+    {
+        text.text = "This is my take on a training project for a course that I am on. \n" +
+                    "It is advisable to visit area's multiple times as you may well \n" +
+                    "miss things otherwise, as area's change... a lot! \n" +
+                    "Besides the main character there is a sub-character within this game, \n" +
+                    "he is a bit sarcastic but may help you out, you will know it is him \n" +
+                    "talking by the asterisk *either side of the sentence*, like that. \n" +
+                    "Everything inside 2 asterisk's either side of the sentence are actions. \n\n" +
+                    "I hope you enjoy! \n\n" +
+                    "**Press Space to Start**";
+
+        eg1 = false;
+        eg2 = false;
+        eg3 = false;
+        eg4 = false;
+
+        if (Input.GetKeyDown(KeyCode.Space)) { myState = States.dream; }
+    }
+
+    void dream()
+    {
+        text.text = "You awake from a terrible nightmare! You can't really remember the dream but... \n" +
+                    "'There were spiders... no not spiders, ants, yeah ants with guns!' \n\n" +
+                    "*Arrr yeah, really scary, a 4mm ant carrying a 1mm gun, ohhhh so SCARY, pussy!* \n" +
+                    "*Oh and FYI, you're talking to yourself, just thought you should know.* \n\n" +
+                    "You are sweating and it is very dark. \n\n" +
+                    "*Maybe you should open your eyes, it might not be so dark!... Idiot!* \n\n" +
+                    "** Press 'O' to Open you eyes **";
+
+        if (Input.GetKeyDown(KeyCode.O)) { myState = States.bed_0; }
+    }
+
+    void bed_0()
+    {
+        text.text = "You try to open your eyes, but they are sealed shut with sleep. \n" +
+                    "After a few minutes of rubbing, you manage to get them open. \n" +
+                    "You appear to be in a hospital bed, the bed covers are old and blue with little holes in, \n" +
+                    "there is an 'I.V' in your hand. \n" +
+                    "The 'I.V' is attached to an empty bag. You have no idea what it contained, it isn't labelled. \n" +
+                    "'Why the hell am I in hospital and why is it so quiet!' \n\n" +
+                    "*You ask... absolutly no one!* \n\n" +
+                    "** Press 'B' to get out of Bed **";
+
+
+        if (Input.GetKeyDown(KeyCode.B)) { myState = States.room_0; }
+    }
+
+    void room_0()
+    {
+        text.text = "You pull the cannula out of your hand, it really hurt, you're sure it shouldn't have hurt that much. \n" +
+                    "You notice that the reason it hurt so much was that the wound from the cannula was \n" +
+                    "healed around the plastic, like it was part of you! \n" +
+                    "'How long have I been here and why can't I remember nothing!' \n\n" +
+                    "*Yep, still talking to yourself!* \n" +
+                    "*Oh and that's a double negative right there, you complete freak!* \n" +
+                    "*You can't remember ANYTHING not nothing, moron!* \n\n" +
+                    "You get off of the bed and promptly fall over. After quite a while you climb to your feet, \n" +
+                    "a little wobbly but you are standing, just! \n" +
+                    "All you are wearing is a tatty hospital gown with the ties missing, it is very, VERY drafty! \n" +
+                    "There is a window to your right, a door in front of you and what looks like a loo to your left. \n\n" +
+                    "** Press 'W' to look out Window, 'D' to open Door, 'B' to go to Bed or 'L' to go to the Loo **";
+
+
+        if (Input.GetKeyDown(KeyCode.W)) { myState = States.window_0; }
+        else if (Input.GetKeyDown(KeyCode.D)) { myState = States.door_0; }
+        else if (Input.GetKeyDown(KeyCode.L)) { myState = States.shower_0; }
+        else if (Input.GetKeyDown(KeyCode.B)) { myState = States.bed_1; }
+
+    }
+
+    void window_0()
+    {
+        text.text = "You look out of the window, you appear to be one floor from the ground, \n" +
+                    "but other than that, nothing, as there is a wall to another building 6 feet away. \n\n" +
+                    "*You could stand here all day but that wall will still be a wall!* \n\n" +
+                    "** Press 'G' to Go back **";
+
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.room_1; }
+    }
+
+    void door_0()
+    {
+        text.text = "You try to open the door but it is locked. \n\n" +
+                    "*Well that's a shocker! I really thought that door would be open! NOT!* \n\n" +
+                    "** Press 'G' to Go back **";
+
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.room_1; }
+    }
+
+    void shower_0()
+    {
+        text.text = "You are in a shower room, there is a small medicine cabinet, a shower and a toilet. \n" +
+                    "You try the water on the shower and flush the toilet but nothing happens. \n\n" +
+                    "**Press 'C' to open the Cabinet or 'G' to Go back**";
+
+        if (Input.GetKeyDown(KeyCode.C)) { myState = States.cabi_0; }
+        else if (Input.GetKeyDown(KeyCode.G)) { myState = States.room_1; }
+    }
+
+    void bed_1()
+    {
+        text.text = "You look at what you have been sleeping in for God knows how long, you decide \n" +
+                    "that sleeping is the last thing on your mind! \n\n" +
+                    "*Listen, take it from me and you can trust me here, as I must be, at least* \n" +
+                    "*in part, YOU. If you stay on this stupid quest, no good will come of it.* \n" +
+                    "*You will just get hurt and end up back unconcious and DREAMING anyway! \n" +
+                    "*So just climb back into bed and go to sleep, it is the best thing you can do,* \n" +
+                    "*trust me, I'm you, I have your back.. and your front.. get it, I'm you, dya get it!* \n\n" +
+                    "** Press 'G' to Go back or 'S' to go to Sleep**";
+
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.room_1; }
+        if (Input.GetKeyDown(KeyCode.S)) { myState = States.dec1; }
+    }
+
+    void room_1()
+    {
+        text.text = "The room is quite spacious for a hospital and there is psychedelic carpet on the floor! Very weird! \n" +
+                    "There is a window to your right, a door in front of you and what looks like a toilet to your left. \n\n" +
+                    "** Press 'W' to look out Window, 'D' to open Door, 'B' to go Back to bed or 'L' to go to the Loo **";
+
+
+        if (Input.GetKeyDown(KeyCode.W)) { myState = States.window_0; }
+        else if (Input.GetKeyDown(KeyCode.D)) { myState = States.door_0; }
+        else if (Input.GetKeyDown(KeyCode.L)) { myState = States.shower_0; }
+        else if (Input.GetKeyDown(KeyCode.B)) { myState = States.bed_1; }
+
+    }
+
+    void cabi_0()
+    {
+        text.text = "You move to the cabinet, it has a mirror on it, you have short hair and you can see a \n" +
+                    "large scar running around your head. \n" +
+                    "'That's new, I guess I now know why I am in hospital and why I can't remember anything!'\n \n" +
+                    "*Jeez! Will you stop with the talking crap, YOU'RE alone, NO ONE is here!* \n" +
+                    "*But good job on the ANYTHING! See you can talk properly.. To yourself.... Freak!* \n\n" +
+                    "You look quite gaunt and very pale, you must have been here quite a while. \n" +
+                    "You open the cabinet, there is a key on a shelf and a empty packet of cigarette's \n" +
+                    "'Shame that's an empty pack, they always helped Snake out!' \n\n" +
+                    "*Really! I mean REALLY! Now you're using other games too! \n" +
+                    "*I am truly sorry Mr Kojima, he is mad I tell you, MAD!!* \n\n" +
+                    "** Press 'K' to take the Key or press 'G' to Go back**";
+
+        if (Input.GetKeyDown(KeyCode.K)) { myState = States.key; }
+        else if (Input.GetKeyDown(KeyCode.G)) { myState = States.shower_0; }
+
+    }
+
+    void key()
+    {
+        text.text = "You take the key and close the cabinet, that key should come in handy! \n\n" +
+                    "** Press 'G' to Go back **";
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.shower_1; }
+
+    }
+
+    void cabi_1()
+    {
+        text.text = "You look at yourself in the mirror. \n\n" +
+                    "*You are so very vain!* \n\n" +
+                    "** Press 'G' to Go back **";
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.shower_1; }
+
+    }
+
+    void shower_1()
+    {
+        text.text = "This is the shower room, it all looks the same. \n\n" +
+                    "**Press 'C' to examine the Cabinet or 'G' to Go back**";
+
+        if (Input.GetKeyDown(KeyCode.C)) { myState = States.cabi_1; }
+        else if (Input.GetKeyDown(KeyCode.G)) { myState = States.room_2; }
+
+    }
+
+    void room_2()
+    {
+        text.text = "The room is still the same, with the same things and the same exits, it just doesn't change! \n\n" +
+            "** Press 'B' to go to bed, 'W' to look out Window , 'D' to open Door, or 'L' to go to the Loo **";
+
+
+        if (Input.GetKeyDown(KeyCode.W)) { myState = States.window_1; }
+        else if (Input.GetKeyDown(KeyCode.D)) { myState = States.door_1; }
+        else if (Input.GetKeyDown(KeyCode.T)) { myState = States.shower_1; }
+        else if (Input.GetKeyDown(KeyCode.B)) { myState = States.bed_2; }
+
+    }
+
+
+
+    void bed_2()
+    {
+        text.text = "'I'm sure the bed covers were blue, they are pink now, maybe I have brain damage' \n\n" +
+                    "*I'm pretty sure you have bloody brain damage, you haven't stopped talking to yourself!* \n" +
+                    "*Anyone would think that you were in a film or a game or something and you* \n" +
+                    "*were monologuing to an audience! Bloody weirdo!* \n" +
+                    "*Anyway I digress... I thought they were blue too, to be honest,* \n" +
+                    "*but I can only see through your eyes, so who knows!* \n" +
+                    "*Now seriously, go back to sleep, it is less painful that way!* \n\n" +
+
+                    "** Press 'G' to Go back or 'S' to go to Sleep**";
+
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.room_2; }
+        if (Input.GetKeyDown(KeyCode.S)) { myState = States.dec2; }
+    }
+
+    void window_1()
+    {
+        text.text = "You look out the window at the derelict buildings all around and at the green sky... \n\n" +
+                    "*Hold on a minute! Now I know that the last time you looked,* \n" +
+                    "*it DID NOT look like that!* \n" +
+                    "*And what is the green sky all about, it should be blue, or grey or even red,* \n" +
+                    "*but never, ever, green!* \n" +
+                    "*Maybe we are both stone bonkers, would answer a lot actually.* \n\n" +
+                    "** Press 'G' to Go back **";
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.room_2; }
+
+
+    }
+
+    void door_1()
+    {
+        text.text = "*The door is open, hmmm, I'm sure it was locked at some point* \n" +
+                    "*but then what do I know, I'm completely loopy!* \n\n" +
+                    "** Press 'W' to move in to the Ward or 'G' to Go back **";
+
+
+        if (Input.GetKeyDown(KeyCode.W)) { myState = States.ward_0; }
+        else if (Input.GetKeyDown(KeyCode.G)) { myState = States.room_2; }
+
+    }
+
+    void ward_0()
+    {
+        text.text = "You are in a ward, not much to see really, a lot of empty beds, a few doors, very meh! \n" +
+                    "There is another door opposite and what looks like a closet next to the room you just left. \n" +
+                    "There are also some stairs which go up. \n\n" +
+                "** Press 'D' to open the Door, 'S' to use Stairs, 'C' to enter Closet or 'G' to Go back **";
+
+        if (Input.GetKeyDown(KeyCode.D)) { myState = States.door_2; }
+        else if (Input.GetKeyDown(KeyCode.C)) { myState = States.closet_0; }
+        else if (Input.GetKeyDown(KeyCode.S)) { myState = States.stairs_0; }
+        else if (Input.GetKeyDown(KeyCode.G)) { myState = States.room_2; }
+    }
+
+    void closet_0()
+    {
+        text.text = "You enter the closet, there are clothes in here and nothing else \n\n" +
+                    "** Press 'C' to wear the Clothes or 'G' to Go back **";
+
+        if (Input.GetKeyDown(KeyCode.C)) { myState = States.closet_1; }
+        else if (Input.GetKeyDown(KeyCode.G)) { myState = States.ward_0; }
+    }
+
+    void closet_1()
+    {
+        text.text = "You put on the clothes, you feel much warmer. You put the key \n" +
+                    "in a pocket and feel a sudden pain in your head and then there is \n" +
+                    "a loud bang from outside the closet! \n\n" +
+                    "*See what happens when you steal someones clothes!* \n\n" +
+                    "The pain goes as suddenly as it came. \n\n" +
+                    "*Alright they might be your clothes, they do fit very well I must say* \n\n" +
+                    "** Press 'G' to Go back **";
+
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.ward_1; }
+
+    }
+
+    void ward_1()
+    {
+        text.text = "You are back in the ward, but something has changed, the doors are gone! \n" +
+                    "Your room is no longer there nor the door opposite to it and all the beds are gone too! \n" +
+                    "There are only the stairs which go up. \n\n" +
+                    "*OK then, this is some weird trippy crap going on right here, did you take the red pill?* \n" +
+                    "*Ohhh NOOOO, now I'm doing it! Sorry Ms & Ms Wachowski, I'm mad I tell you, MAD!* \n\n" +
+                    "** Press 'S' to use Stairs or 'C' to enter the Closet **";
+
+        if (Input.GetKeyDown(KeyCode.C)) { myState = States.closet_2; }
+        else if (Input.GetKeyDown(KeyCode.S)) { myState = States.stairs_1; }
+
+    }
+
+    void stairs_0()
+    {
+        text.text = "You move to go up the stairs but you can feel a cold wind coming down them and \n" +
+                    "see an opening at the top, it must go to the roof. You'll freeze if you go up there! \n\n" +
+                    "** Press 'G' to Go back **";
+
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.ward_0; }
+
+    }
+
+    void door_2()
+    {
+        text.text = "The door is locked, you try the key but it doesn't fit the lock. \n\n" +
+                    "** Press 'G' to Go back **";
+
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.ward_0; }
+
+    }
+
+    void closet_2()
+    {
+        text.text = "This is the closet where you got the clothes, there is nothing else here! \n\n" +
+                    "*Time to come out of the closet* \n\n" +
+                    "** Press 'G' to Go back **";
+
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.ward_1; }
+
+    }
+
+    void stairs_1()
+    {
+        text.text = "You are at the Stairs, you can go up them as you are nice and warm \n" +
+                    "in the clothes you now have on! \n\n" +
+                    "** Press 'U' to go Up the stairs or 'G' to Go back **";
+
+        if (Input.GetKeyDown(KeyCode.U)) { myState = States.roof_0; }
+        else if (Input.GetKeyDown(KeyCode.G)) { myState = States.ward_1; }
+
+    }
+
+    void roof_0()
+    {
+        text.text = "You are on the roof of the building, it is barren except for a small shed like structure in the centre. \n" +
+                    "You can see for miles around but it isn't pretty, just derelict buildings as far as the eye can see. \n\n" +
+                    "*Makes you wonder why this building is still here really, it's like, really,* \n" +
+                    "*I mean REALLY suspicious!* \n\n" +
+                    "** Press 'S' to enter Shed or 'G' to Go back downstairs **";
+
+        if (Input.GetKeyDown(KeyCode.S)) { myState = States.shed_0; }
+        else if (Input.GetKeyDown(KeyCode.G)) { myState = States.ward_1; }
+    }
+
+    void shed_0()
+    {
+        text.text = "It is damp and smelly in here, there is not much to see but there is a newspaper on the floor. \n\n" +
+                    "** Press 'N' to read the News paper or 'G' to Go back to the roof **";
+        if (Input.GetKeyDown(KeyCode.N)) { myState = States.paper; }
+        else if (Input.GetKeyDown(KeyCode.G)) { myState = States.roof_0; }
+
+    }
+
+    void paper()
+    {
+        text.text = "You pick up the paper and read the headline... \n\n" +
+                    "EXTRA-DIMENSIONAL INVADERS DESTROY 95% OF THE HUMAN RACE \n\n" +
+                    "You wonder if there are any humans left, you don't know how old \n" +
+                    "this paper is, it could be months old, everyone could be dead now! \n\n" +
+                    "*OK, what the hell are Extra-Dimensional Invaders!* \n" +
+                    "*You couldn't make this crap up! Could you?* \n" +
+                    "*I thought maybe, just maybe, space aliens, or even zombies, but never E.D.I's!* \n" +
+                    "*Oh and if 95% of the human race are gone, who the hell is still printing papers?* \n" +
+                    "*You'd think they would have better things to do, like kissing their ass' goodbye!* \n" +
+                    "*Just saying...* \n\n" +
+                    "** Press 'G' to Go back **";
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.shed_1; }
+
+    }
+
+    void shed_1()
+    {
+        text.text = "You hear a chittering noise from outside the shed! \n\n" +
+                    "*Look, now you could go out and see what that is, but my advice is stay here,* \n" +
+                    "*assume the fetal position and cry like a baby, because you know full well that* \n" +
+                    "*whatever is out there is not gonna be nice and helpful, it is bloody chittering,* \n" +
+                    "*when has chittering ever been the sound of savlation, huh?!* \n\n" +
+                    "** Press 'G' to Go back outside the shed **";
+        if (Input.GetKeyDown(KeyCode.G)) { myState = States.roof_1; }
+
+    }
+
+    void roof_1()
+    {
+        text.text = "You exit the shed to find yourself in front of a hideous, huge ant like creature that \n" +
+                    "is holding a long gun like thing! It asks you nothing, just points the weapon and fires! \n" +
+                    "A green hazy beam shoots towards you, but you drop to your knees and roll.... \n\n" +
+                    "You can only go two places, either back in to the shed or jump off the roof to the ground,\n" +
+                    "you are only two floors up, you saw that from the window so you might be ok, \n" +
+                    "certainly better than whatever 'Ant Dude' has got in store for you. \n\n" +
+                    "** Press 'S' to re-enter the Shed or 'J' to Jump off the roof **";
+        if (Input.GetKeyDown(KeyCode.S)) { myState = States.shed_2; }
+        else if (Input.GetKeyDown(KeyCode.J)) { myState = States.jump; }
+
+    }
+
+    void jump()
+    {
+        text.text = "You run over to the edge of the roof and jump, as you fly through the air you realise \n" +
+                    "that it is more like twenty floors not two, the building is sitting on a cliff!... \n\n" +
+                    "*Jackass!! The window was on the other side of the building!* \n\n" +
+                    "You know that your death approaches as you fall faster and faster.. \n" +
+                    "When you hit the ground you feel every bone in your body break, just before it all goes black, " +
+                    "you hear a voice! It says, \n\n" +
+                    "'B R E A T H E !' \n\n" +
+                    "** Press 'B' to take your last Breath! **";
+        if (Input.GetKeyDown(KeyCode.B)) { myState = States.dec3; }
+
+    }
+
+    void shed_2()
+    {
+        text.text = "*I told you to stay in the shed didn't I!* \n" +
+                    "*Now it knows where you are, you bloody imbecile!* \n\n" +
+                    "You scramble back in to the shed and crawl on the floor, it is at this point you \n" +
+                    "realise just how stupid an idea this was, just as you think how really, REALLY \n" +
+                    "stupid you are, the door flies open and the green haze from the 'Ant Thing's' weapon \n" +
+                    "fills the shed. As is touches your skin, you feel it burning instantly down to the bone. \n" +
+                    "Just as the darkness takes you, you hear a voice in your head, it says, \n\n" +
+                    "'B R E A T H E !' \n\n" +
+                    "** Press 'B' to take your last Breath **";
+
+        if (Input.GetKeyDown(KeyCode.B)) { myState = States.dec4; }
+
+    }
+
+    void wake()
+    {
+        text.text = "You wake up with a start and look over at the clock, it is 4am. \n" +
+                    "You lay back and stare at the ceiling for a few minutes and then get \n" +
+                    "out of bed and go over to the window. \n" +
+                    "The sun is just coming up and it looks like it will be a beautiful day. \n" +
+                    "'Why are you up so early?', your wife asks you from the bed. \n" +
+                    "You reply, 'Sorry, I didn't mean to wake you, I just had a bad dream... \n\n" +
+                    "----------------------------------------------------------------------- \n\n" +
+                    "----------Congratulations!----------\n\n" +
+                    "You have completed 'The Dream' \n\n" +
+                    "** Press Space to Start again **";
+
+        if (Input.GetKeyDown(KeyCode.Space)) { myState = States.start; }
+        #endregion
+
+    }
+
+}
